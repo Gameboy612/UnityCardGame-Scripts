@@ -9,12 +9,11 @@ public class MonsterCard : Card
     [SerializeField] public int Cost;
     [SerializeField] public Ability[] ability;
 
-
-    private GameManager gm;
+    private GameManager _gm;
     private int MonsterCardIndex;
 
-    private void Start() {
-        gm = FindObjectOfType<GameManager>();
+    void OnEnable() {
+        _gm = FindObjectOfType<GameManager>();
         Health = MaxHealth;
     }
 
@@ -22,15 +21,12 @@ public class MonsterCard : Card
         Health += change;
     }
 
-    private void OnMouseDown() {
-        if(gm.isUserTurn) {
-            // Implement this later, it should take user input then choose first ability to perform.
-            // Also, make a new ability object for each card.
-
-        }
-    }
 
     public override bool checkAvailability() {
-        return false;
+        return true;
+    }
+
+    public override void playCard(UserManager userManager) {
+        userManager.summonMonster(this, 0);
     }
 }
