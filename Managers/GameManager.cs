@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
         PlayerUser.ShuffleCards();
         OpponentUser.ShuffleCards();
 
-        PlayerUser.DrawCard(3);
-        OpponentUser.DrawCard(3);
+        PlayerUser.HandManager.DrawCard(3);
+        OpponentUser.HandManager.DrawCard(3);
 
-        PlayerUser.summonMonster(PlayerUser.Hand[0] as MonsterCard, 0);
-        OpponentUser.summonMonster(OpponentUser.Hand[0] as MonsterCard, 0);
+        PlayerUser.summonMonster(PlayerUser.HandManager.Hand[0] as MonsterCard, 0);
+        OpponentUser.summonMonster(OpponentUser.HandManager.Hand[0] as MonsterCard, 0);
 
     }
 

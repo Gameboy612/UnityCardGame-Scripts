@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
-    [SerializeField] public GameObject prefab;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +14,5 @@ public class Card : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public virtual bool checkAvailability() {
-        return false;
     }
 }

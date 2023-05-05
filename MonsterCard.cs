@@ -30,7 +30,7 @@ public class MonsterCard : Card
         }
     }
 
-    public bool checkAvailability() {
+    public override bool checkAvailability() {
         return false;
     }
 }
