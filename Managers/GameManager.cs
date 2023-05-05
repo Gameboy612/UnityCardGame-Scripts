@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
         PlayerUser.summonMonster(PlayerUser.Hand[0] as MonsterCard, 0);
         OpponentUser.summonMonster(OpponentUser.Hand[0] as MonsterCard, 0);
+
     }
 
 }

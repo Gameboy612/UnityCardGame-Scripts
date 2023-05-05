@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
-    const int MONSTER_CARD_LIMIT = 5;
 
 
     [SerializeField] List<Card> Deck = new List<Card>();
     
     // Monster Card Field
-    [SerializeField] MonsterCard[] MonsterCards;
-    public GameObject[] MonsterCards_Object = new GameObject[MONSTER_CARD_LIMIT];
+    [SerializeField] MonsterCardFieldManager MonsterCardField;
 
     // Hand Cards
     public List<Card> Hand = new List<Card>();
@@ -19,10 +17,8 @@ public class UserManager : MonoBehaviour
     
     // Card Locations
     [SerializeField] Transform Hand_Transform;
-    [SerializeField] Transform[] MonsterCards_Transform;
     // Folder to save the cards
     [SerializeField] GameObject Hand_ParentObject;
-    [SerializeField] GameObject MonsterCards_ParentObject;
 
     public void ShuffleCards() {
         int n = Deck.Count;
@@ -51,21 +47,12 @@ public class UserManager : MonoBehaviour
         }
     }
 
-    public void summonMonster(
+    public bool summonMonster(
         MonsterCard monsterCard,
         int index
         )
     {
-        if(0 < index || index >= MONSTER_CARD_LIMIT) return;
-        if(MonsterCards[index] != null) {
-            Debug.LogWarning($"Card Slot {index} already occupied!");
-        };
-        MonsterCards[index] = monsterCard;
-        MonsterCards_Object[index] = Instantiate(monsterCard.prefab, new Vector3(0, 0, 0), Quaternion.identity);
-        MonsterCards_Object[index].transform.parent = MonsterCards_ParentObject.transform;
-        MonsterCards_Object[index].transform.position = MonsterCards_Transform[index].position;
-        MonsterCards_Object[index].transform.rotation = MonsterCards_Transform[index].rotation;
-        MonsterCards_Object[index].transform.localScale = MonsterCards_Transform[index].localScale;
+        return MonsterCardField.summonMonster(monsterCard, index);
     }
     
     public float[] getHandCardLocations() {
